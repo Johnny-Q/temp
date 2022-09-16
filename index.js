@@ -20,7 +20,12 @@ const fs = require("fs");
             n++;
         }
         // console.log(JSON.stringify(matches));
-        return JSON.stringify(matches) != original;
+        
+        const diff = JSON.stringify(matches) != original;
+        if(diff){
+            fs.writeFileSync("./data", JSON.stringify(matches));
+        }
+        return diff;
         // return false;
     }
     if (seatingChanged(resp.data)) {
